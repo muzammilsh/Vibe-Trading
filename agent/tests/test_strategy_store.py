@@ -804,7 +804,7 @@ class TestSqliteStore:
     def test_bench_result_with_category(self):
         """Bench result with BenchCategory enum round-trips."""
         aid = self.store.register_artifact(_make_artifact(name="cat_factor"))
-        bid = self.store.record_bench(
+        self.store.record_bench(
             BenchResult(
                 artifact_id=aid,
                 ic_mean=0.05,

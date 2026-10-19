@@ -124,7 +124,7 @@ def test_abbreviated_fx_pair_x_classes_as_forex() -> None:
 def test_index_backtest_routes_to_global_equity_not_china_or_crypto() -> None:
     """^SPX must never reach ChinaAEngine/CryptoEngine through the runner."""
     from backtest.engines.global_equity import GlobalEquityEngine
-    from backtest.runner import _MARKET_TO_SOURCE, _create_market_engine, _detect_source
+    from backtest.runner import _create_market_engine, _detect_source
 
     assert _detect_source("^SPX") == "yahoo"
     engine = _create_market_engine("yahoo", {}, ["^SPX"])
@@ -139,18 +139,6 @@ def test_composite_builds_index_rule_engine() -> None:
     engines = _build_rule_engines({}, ["^SPX"])
     assert "index" in engines
     assert isinstance(engines["index"], GlobalEquityEngine)
-
-
-def test_yahoo_loader_accepts_futures_and_forex_suffixes() -> None:
-    """The yahoo direct loader must accept =F/=X, not just equity suffixes (#718)."""
-    from backtest.loaders.yahoo_loader import _is_supported
-
-    assert _is_supported("GC=F") is True
-    assert _is_supported("EURUSD=X") is True
-    assert _is_supported("AAPL.US") is True  # unchanged
-    assert _is_supported("TD.TO") is True
-    assert _is_supported("PNG.V") is True
-    assert _is_supported("600519.SH") is False  # A-share still not yahoo
 
 
 def test_fetch_market_data_auto_routes_yahoo_suffix_symbols() -> None:

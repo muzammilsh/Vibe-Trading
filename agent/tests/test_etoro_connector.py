@@ -25,7 +25,7 @@ from src.trading.connectors.etoro.client import (
     set_client_factory,
 )
 from src.trading.connectors.etoro.classification import ETORO_TOOL_CLASS
-from src.trading.connectors.etoro.profiles import ETORO_EXTENDED_CAPABILITIES, ETORO_PAPER_TRADE_CAPABILITIES
+from src.trading.connectors.etoro.profiles import ETORO_PAPER_TRADE_CAPABILITIES
 
 pytestmark = pytest.mark.unit
 

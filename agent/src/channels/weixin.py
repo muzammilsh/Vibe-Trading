@@ -24,17 +24,20 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import quote
 
+import logging
+
 import httpx
-import logging; logger = logging.getLogger(__name__)
+from pydantic import BaseModel
 from pydantic import Field
 
+from src.channels.base import BaseChannel
 from src.channels.bus.events import OutboundMessage
 from src.channels.bus.queue import MessageBus
-from src.channels.base import BaseChannel
-from src.channels.utils import get_media_dir, get_runtime_subdir
-from pydantic import BaseModel
+from src.channels.utils import get_media_dir
+from src.channels.utils import get_runtime_subdir
 from src.channels.utils import split_message
 
+logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 # Protocol constants (from openclaw-weixin types.ts)
 # ---------------------------------------------------------------------------

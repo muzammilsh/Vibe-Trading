@@ -29,6 +29,16 @@ from typing import Dict, List, Optional
 import pandas as pd
 import requests
 
+from backtest.loaders.base import (
+    cached_loader_fetch,
+    check_budget,
+    positive_env_float,
+    positive_env_int,
+    retry_with_budget,
+    validate_date_range,
+)
+from backtest.loaders.registry import register
+
 logger = logging.getLogger(__name__)
 
 # Project / connector period tokens -> OKX candle ``bar`` strings.
@@ -46,18 +56,9 @@ _INTERVAL_MAP = {
     "1D": "1D",
 }
 
-from backtest.loaders.base import (
-    cached_loader_fetch,
-    check_budget,
-    positive_env_float,
-    positive_env_int,
-    retry_with_budget,
-    validate_date_range,
-)
-from backtest.loaders.registry import register
-
 BASE_URL = "https://www.okx.com/api/v5"
 CANDLES_PATH = f"{BASE_URL}/market/candles"
+HISTORY_CANDLES_PATH = f"{BASE_URL}/market/history-candles"
 HISTORY_CANDLES_PATH = f"{BASE_URL}/market/history-candles"
 _MAX_PER_PAGE = 300
 # Recent endpoint typically only covers ~months of 1D bars; beyond this age
@@ -71,7 +72,7 @@ _OKX_PROBE_TIMEOUT = positive_env_int("OKX_PROBE_TIMEOUT_S", 8)
 
 def _first_proxy_env(*names: str) -> str:
     for name in names:
-        value = os.getenv(name, "").strip()  # noqa: env-gate — system proxy vars
+        value = os.getenv(name, "").strip()  # env-gate: system proxy vars
         if value:
             return value
     return ""

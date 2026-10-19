@@ -20,7 +20,8 @@ def test_websocket_channel_starts_on_a_unix_socket():
     from src.channels.bus.queue import MessageBus
 
     # macOS caps unix socket paths at 104 chars, so keep it short
-    import tempfile, uuid as _uuid
+    import tempfile
+    import uuid as _uuid
 
     sock = f"{tempfile.gettempdir()}/vt-{_uuid.uuid4().hex[:8]}.sock"
     channel = WebSocketChannel(

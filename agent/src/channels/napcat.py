@@ -13,20 +13,22 @@ from collections import deque
 from pathlib import Path
 from typing import Annotated, Any, Literal
 
+import logging
+
 import aiohttp
-import logging; logger = logging.getLogger(__name__)
+from pydantic import BaseModel
 from pydantic import Field
 from websockets.asyncio.client import ClientConnection
 from websockets.asyncio.client import connect as ws_connect
 
+from src.channels.base import BaseChannel
 from src.channels.bus.events import OutboundMessage
 from src.channels.bus.queue import MessageBus
-from src.channels.base import BaseChannel
 from src.channels.utils import get_media_dir
-from pydantic import BaseModel
-from src.channels.utils import validate_url_target
 from src.channels.utils import safe_filename
+from src.channels.utils import validate_url_target
 
+logger = logging.getLogger(__name__)
 _DOWNLOAD_TIMEOUT = aiohttp.ClientTimeout(total=60)
 _ACTION_TIMEOUT = 20.0
 

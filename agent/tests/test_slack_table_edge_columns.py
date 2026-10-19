@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import re
 
 from tests.slack_stubs import install_slack_stubs
 

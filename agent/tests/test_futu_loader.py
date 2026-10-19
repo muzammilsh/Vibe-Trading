@@ -41,7 +41,7 @@ from backtest.loaders.futu import (  # noqa: E402
     _to_futu_symbol,
     _to_futu_ktype,
 )
-from tests.loader_contract import assert_loader_contract
+from tests.loader_contract import assert_loader_contract  # noqa: E402
 from backtest.loaders.base import NoAvailableSourceError  # noqa: E402
 
 # ---------------------------------------------------------------------------

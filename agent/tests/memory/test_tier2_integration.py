@@ -11,12 +11,11 @@ from __future__ import annotations
 import json
 import time
 from datetime import datetime, timedelta
-from pathlib import Path
 
 import pytest
 
 from src.config.accessor import reset_env_config
-from src.memory.persistent import PersistentMemory, MemoryEntry
+from src.memory.persistent import PersistentMemory
 from src.memory.lifecycle import MemoryLifecycle
 from src.tools.remember_tool import RememberTool
 
@@ -581,7 +580,7 @@ class TestRemoveCleansRelationsSidecar:
 
         # The sidecar for the removed entry should be gone
         from src.memory.semantic_links import SemanticLinker
-        linker = SemanticLinker(tmp_path)
+        SemanticLinker(tmp_path)
         # Try to find the relations file for any file named like the target
         target_files = list(tmp_path.rglob("*target_entry*"))
         # The .md file itself should be deleted

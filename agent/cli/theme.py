@@ -126,7 +126,7 @@ def _build_styles(dark: bool, no_color: bool) -> _ThemeStyles:
     """Construct the style bundle for the current terminal mode."""
 
     if no_color:
-        plain = Style()
+        Style()
         return _ThemeStyles(
             primary=Style(bold=True),
             primary_dim=Style(),

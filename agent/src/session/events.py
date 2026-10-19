@@ -11,10 +11,10 @@ import logging
 import threading
 import time
 import uuid
-
-logger = logging.getLogger(__name__)
 from dataclasses import dataclass, field
 from typing import Any, AsyncIterator, Callable, Dict, List, Optional
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass

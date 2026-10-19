@@ -136,7 +136,7 @@ def compute_rebalance_execution_evidence(
     liquidations ``"end_of_backtest"`` — both stay in ``trade_count`` /
     ``by_exit_reason``. A constant-target strategy that "rebalanced once"
     therefore reports one requested change and as many executed fills as the
-    bars it actually re-pinned. 
+    bars it actually re-pinned.
     ``rebalance_executed_fills`` counts those fills, ``rebalance_executed_bars``
     the distinct bars they hit, and ``rebalance_realized_turnover`` the
     realized turnover they caused, using the same per-bar

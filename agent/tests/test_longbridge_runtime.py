@@ -587,7 +587,6 @@ def test_verify_endpoint_is_readonly_and_idempotent(tmp_path: Path, monkeypatch)
     client = _client(tmp_path, monkeypatch)
 
     # Two calls with the same profile return the same result
-    payload = {"profile_id": "longbridge-live-sdk-readonly"}
 
     monkeypatch.setattr(
         api_server,
@@ -726,7 +725,7 @@ def test_verify_force_bypass_cache(tmp_path: Path, monkeypatch) -> None:
     monkeypatch.setattr("src.trading.service.check_connection", _stub_check_connection)
 
     # First call
-    r1 = client.post("/live/connectors/longbridge-live-sdk-readonly/verify")
+    client.post("/live/connectors/longbridge-live-sdk-readonly/verify")
     assert call_count["n"] == 1
 
     # force=True bypasses cache

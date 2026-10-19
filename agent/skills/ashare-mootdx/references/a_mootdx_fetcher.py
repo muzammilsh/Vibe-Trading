@@ -8,7 +8,6 @@ Usage:
 import logging
 from mootdx.quotes import Quotes
 import pandas as pd
-from typing import Optional, List
 
 logger = logging.getLogger(__name__)
 
@@ -41,8 +40,10 @@ def fetch_daily(code: str, start_date=None, end_date=None, limit=250) -> pd.Data
     df = df[cols].copy()
     if 'date' in df.columns:
         df = df.set_index('date').sort_index()
-        if start_date: df = df[df.index >= pd.Timestamp(start_date)]
-        if end_date: df = df[df.index <= pd.Timestamp(end_date)]
+        if start_date:
+            df = df[df.index >= pd.Timestamp(start_date)]
+        if end_date:
+            df = df[df.index <= pd.Timestamp(end_date)]
     return df
 
 def fetch_realtime(codes: list) -> pd.DataFrame:
@@ -70,11 +71,13 @@ def batch_fetch_daily(codes, limit=250, sleep_sec=0.3):
     for i, code in enumerate(codes):
         try:
             df = fetch_daily(code, limit=limit)
-            if len(df) > 0: results[code] = df
+            if len(df) > 0:
+                results[code] = df
         except Exception as e:
             logger.warning("Failed to fetch daily bars for %s: %s", code, e)
             results[code] = pd.DataFrame()
-        if i < len(codes) - 1: time.sleep(sleep_sec)
+        if i < len(codes) - 1:
+            time.sleep(sleep_sec)
     return results
 
 def get_a_share_list():

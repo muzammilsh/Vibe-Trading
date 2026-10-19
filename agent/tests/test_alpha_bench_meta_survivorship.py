@@ -149,7 +149,7 @@ def test_meta_key_absent_from_envelope_and_context_when_loader_has_none(capsys, 
 # above stayed green. These tests assert on the rendered HTML string instead.
 # ---------------------------------------------------------------------------
 
-import src.tools.alpha_bench_tool as tool
+import src.tools.alpha_bench_tool as tool  # noqa: E402
 
 _RENDER_CTX = {
     "csp": tool._CSP,

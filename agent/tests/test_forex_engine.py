@@ -215,7 +215,6 @@ class TestSwap:
             symbol="USD/JPY", direction=1, entry_price=150.00,
             entry_time=pd.Timestamp("2025-06-10"), size=100000,
         )
-        initial = engine.capital
         ts = pd.Timestamp("2025-06-10 17:00")
         engine.on_bar("EUR/USD", _make_bar(), ts)
         after_eur = engine.capital

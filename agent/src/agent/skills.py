@@ -18,6 +18,9 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
+from src.agent.frontmatter import parse_frontmatter as _parse_frontmatter  # shared util
+
+
 
 @dataclass
 class Skill:
@@ -57,10 +60,6 @@ class Skill:
             return path.read_text(encoding="utf-8")
         except Exception:
             return None
-
-
-from src.agent.frontmatter import parse_frontmatter as _parse_frontmatter  # shared util
-
 
 def _load_skill_dir(dir_path: Path) -> Optional[Skill]:
     """Load a skill from a directory.

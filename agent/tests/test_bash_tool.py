@@ -9,7 +9,7 @@ from unittest.mock import MagicMock
 import pytest
 
 from src.tools import bash_tool
-from src.tools.bash_tool import BashTool, _kill_process_tree
+from src.tools.bash_tool import BashTool
 
 
 class _FakePopen:

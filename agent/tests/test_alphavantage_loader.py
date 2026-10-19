@@ -16,11 +16,11 @@ from tests.loader_contract import assert_loader_contract
 def _payload(*dates_rows) -> dict:
     """Build a TIME_SERIES_DAILY-shaped payload from (date, o, h, l, c, v) tuples."""
     series = {}
-    for date, o, h, l, c, vol in dates_rows:
+    for date, o, h, low, c, vol in dates_rows:
         series[date] = {
             "1. open": str(o),
             "2. high": str(h),
-            "3. low": str(l),
+            "3. low": str(low),
             "4. close": str(c),
             "5. volume": str(vol),
         }

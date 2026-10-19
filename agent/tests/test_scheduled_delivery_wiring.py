@@ -17,7 +17,7 @@ from fastapi.testclient import TestClient
 
 import api_server
 from src.api import scheduled_routes
-from src.scheduled_research.models import DeliveryStatus, ScheduledResearchJob
+from src.scheduled_research.models import DeliveryStatus
 from src.scheduled_research.store import ScheduledResearchJobStore
 
 

@@ -21,12 +21,12 @@ def _udf_payload(
     times: List[int],
     o: List[Any],
     h: List[Any],
-    l: List[Any],
+    low: List[Any],
     c: List[Any],
     v: List[Any],
     status: str = "ok",
 ) -> Dict[str, Any]:
-    return {"s": status, "t": times, "o": o, "h": h, "l": l, "c": c, "v": v}
+    return {"s": status, "t": times, "o": o, "h": h, "l": low, "c": c, "v": v}
 
 
 class _FakeResponse:

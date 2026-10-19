@@ -14,7 +14,7 @@ from __future__ import annotations
 
 import sys
 import time
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, List, Set, Tuple
 
@@ -23,20 +23,17 @@ _AGENT_ROOT = Path(__file__).resolve().parents[4] / "agent"
 if str(_AGENT_ROOT) not in sys.path:
     sys.path.insert(0, str(_AGENT_ROOT))
 
-from src.memory.search_index import MemorySearchIndex
-from src.memory.semantic_links import (
+from src.memory.search_index import MemorySearchIndex  # noqa: E402
+from src.memory.semantic_links import (  # noqa: E402
     SemanticLinker,
     _tokenize_for_bm25,
-    compute_bm25_score,
     compute_idf,
 )
-from src.memory.compression import CompressionPipeline, _tokenize_for_tfidf
-from src.memory.hierarchy import CATEGORIES, MemoryHierarchy
+from src.memory.compression import CompressionPipeline  # noqa: E402
+from src.memory.hierarchy import CATEGORIES, MemoryHierarchy  # noqa: E402
 
-from .metrics import mean_reciprocal_rank, ndcg_at_k, precision_at_k
-from .runner import (
-    MemoryRecord,
-    QueryRecord,
+from .metrics import mean_reciprocal_rank, ndcg_at_k, precision_at_k  # noqa: E402
+from .runner import (  # noqa: E402
     load_corpus,
     load_queries,
     retrieve_top_k,
@@ -253,8 +250,8 @@ def run_links_evaluation(
     # Pre-compute BM25 links for all entries (top-5 per entry)
     linker = SemanticLinker(tmp_path / "memory")
     bm25_corpus = [tokens for _, tokens in all_entries_tokens]
-    idf_links = compute_idf(bm25_corpus)
-    avg_dl = _mean([float(len(t)) for t in bm25_corpus])
+    compute_idf(bm25_corpus)
+    _mean([float(len(t)) for t in bm25_corpus])
 
     # Build adjacency: entry_id -> [(linked_id, score), ...]
     adjacency: Dict[str, List[Tuple[str, float]]] = {}

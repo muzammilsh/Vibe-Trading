@@ -71,8 +71,10 @@ def summarize_args(args: dict | str | None, *, max_len: int = 60) -> str:
     for k, v in args.items():
         token = f"{k}={_truncate(str(v), 20)}"
         if used + len(token) + 2 > max_len:
-            pieces.append("…"); break
-        pieces.append(token); used += len(token) + 2
+            pieces.append("…")
+            break
+        pieces.append(token)
+        used += len(token) + 2
     return ", ".join(pieces)
 
 
